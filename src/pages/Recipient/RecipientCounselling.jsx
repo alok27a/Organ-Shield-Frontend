@@ -28,6 +28,126 @@ const RecipientCounselling = () => {
               This is a dummy
             </Text>
           </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="red.100" w="fit-content" minWidth="100px" borderRadius={5} p={3} m={1} >
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
+          <Flex bg="blue.100" w="fit-content" minWidth="100px" p={3} m={1} borderRadius={5} alignSelf="flex-end">
+            <Text>
+              This is a dummy
+            </Text>
+          </Flex>
          
           
           {/* <Input
