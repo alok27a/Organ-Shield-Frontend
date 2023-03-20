@@ -28,7 +28,7 @@ import {
   ModalCloseButton,
   InputRightElement
 } from '@chakra-ui/react'
-import logo from '../assets/logoOrganShield.svg'
+import logo from '../../assets/logoOrganShield.svg'
 
 
 

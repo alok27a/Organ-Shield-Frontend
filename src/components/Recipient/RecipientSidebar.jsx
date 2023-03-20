@@ -11,16 +11,16 @@ import {
   useDisclosure,
   Heading,
 } from "@chakra-ui/react";
-import { FaHome, FaHistory, FaCcVisa, FaKey,FaBookReader } from "react-icons/fa";
-import logo from '../assets/logoOrganShield.svg'
+import { FaHome, FaSearch,FaBookReader } from "react-icons/fa";
+import logo from '../../assets/logoOrganShield.svg'
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 
 const LinkItems = [
-  { name: "Home", icon: FaHome, path: "/donor/dashboard" },
-  { name: "Counselling", icon:FaBookReader , path: "/donor/dashboard/counselling" },
-  { name: "History", icon: FaHistory, path: "/donor/dashboard/history" },
+  { name: "Home", icon: FaHome, path: "/recipient/dashboard" },
+  { name: "Counselling", icon:FaBookReader , path: "/recipient/dashboard/counselling" },
+  { name: "Potential Donors", icon: FaSearch, path: "/recipient/dashboard/potentialdonors" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {

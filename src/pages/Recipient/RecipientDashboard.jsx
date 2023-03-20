@@ -13,9 +13,9 @@ import {
   toast
 } from "@chakra-ui/react";
 import { Textarea } from '@chakra-ui/react'
-import Sidebar from "../components/DonorSidebar";
-import Card from "../components/Card";
-import Breadcrumbs from "../components/Breadcrumbs";
+import Sidebar from "../../components/Recipient/RecipientSidebar";
+import Card from "../../components/Utility/Card";
+import Breadcrumbs from "../../components/Utility/Breadcrumbs";
 import { Select } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
 
@@ -115,13 +115,6 @@ const Dashboard = () => {
                   mb='0.8rem'
                   placeholder='Enter BMI Value'
                 />
-                <FormLabel mt='0.8rem'>Living Organ Donor </FormLabel>
-                <Select placeholder='Select option' size='md' mb='0.8rem'
-                  onChange={(lod) => { setLod(lod.target.value) }}
-                  id="category2" name="category2" value={lod}>
-                  <option value='living'>Living</option>
-                  <option value='nonliving'>Non-Living</option>
-                </Select>
 
                 <Button colorScheme="red" p={4} onClick={detailsSubmitClicked}>
                   Submit

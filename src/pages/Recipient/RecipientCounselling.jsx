@@ -1,13 +1,11 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect } from "react";
 import { Stack, Wrap, Text, Heading } from "@chakra-ui/react";
-import Sidebar from "../components/DonorSidebar";
-import Breadcrumbs from "../components/Breadcrumbs";
+import Sidebar from "../../components/Recipient/RecipientSidebar";
+import Breadcrumbs from "../../components/Utility/Breadcrumbs";
 
 
-const Pending = () => {
-
-
+const RecipientCounselling = () => {
 
   return (
     <Sidebar>
@@ -24,4 +22,4 @@ const Pending = () => {
   );
 };
 
-export default Pending;
+export default RecipientCounselling;
