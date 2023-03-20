@@ -14,6 +14,7 @@ import {
   toast,
   Textarea,
   useClipboard,
+  Select,
   Text
 } from "@chakra-ui/react";
 
@@ -47,9 +48,18 @@ const Hero = () => {
   const [show, setShow] = React.useState(false)
   const [show1, setShow1] = React.useState(false)
   const [token, setToken] = React.useState(false);
-  const [password, setPassword] = React.useState("")
+
+  // SIGN UP DETAILS
+  const [name, setName] = React.useState("")
   const [email, setEmail] = React.useState("")
-  const [confirmpassword, setConfirmPassword] = React.useState("")
+  const [password, setPassword] = React.useState("")
+  const [blood, setBlood] = React.useState("")
+  const [categ, setCateg] = React.useState("")
+  const [address, setAddress] = React.useState("")
+  const [age, setAge] = React.useState("")
+  const [gender, setGender] = React.useState("")
+
+
   let [value, setValue] = React.useState('')
   const { onCopy, hasCopied } = useClipboard(value);
   const [registerLoading, setRegisterLoading] = React.useState(false)
@@ -70,23 +80,29 @@ const Hero = () => {
     setValue(inputValue)
   }
 
-  const savePassword = async () => {
-    if (password != confirmpassword || password.length == 0 || confirmpassword.length == 0) {
+  const signupUser = async () => {
+    if (categ == null || name == null || email == null || password == null || blood == null || address == null || age == null || gender == null) {
       toast({
         title: 'Error!',
-        description: "Password and Re-Enter pasword not matched",
+        description: "Missing Fields",
         status: 'error',
-        duration: 3000,
+        duration: 9000,
         isClosable: true,
       })
     }
     else {
-      // console.log(password)
       setRegisterLoading(true)
-      let result = await fetch("https://safe-chain.vercel.app/user/create", {
+      let result = await fetch("https://organ-shield-backend.vercel.app/user/create", {
         method: "POST",
         body: JSON.stringify({
-          "password": password
+          "name": name,
+          "email": email,
+          "password": password,
+          "blood_group": blood,
+          "type": categ,
+          "address": address,
+          "age": age,
+          "gender": gender
         }),
         headers: {
           "Content-Type": "application/json",
@@ -96,26 +112,26 @@ const Hero = () => {
       })
       setRegisterLoading(false)
       let test = await result.json()
-      if (test.success) {
+      console.log(test)
+      if (test.status) {
+        console.log("result", test)
         toast({
-          title: 'Success!',
+          title: 'Error!',
           description: test.message,
           status: 'success',
-          duration: 3000,
-          isClosable: true,
-        })
-      } else {
-        toast({
-          title: 'Eror!',
-          description: test.message,
-          status: 'error',
-          duration: 3000,
+          duration: 9000,
           isClosable: true,
         })
       }
-      setValue(test.token)
-      setToken(true)
-      console.log("result", test)
+      else {
+        toast({
+          title: 'Error!',
+          description: test.message,
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+      }
     }
   }
 
@@ -146,14 +162,19 @@ const Hero = () => {
                   <ModalCloseButton />
                   <ModalBody pb={6}>
                     <FormControl mb={5}>
+                      <FormLabel>Enter Name</FormLabel>
+                      <Input
+                        placeholder='Enter Here'
+                        value={name}
+                        onChange={(e) => { setName(e.target.value) }}
+                      />
                       <FormLabel>Enter E-Mail ID</FormLabel>
                       <Input
                         placeholder='Enter Here'
                         value={email}
                         onChange={(e) => { setEmail(e.target.value) }}
                       />
-                    </FormControl>
-                    <FormControl>
+
                       <FormLabel>Password</FormLabel>
                       <InputGroup size='md'>
                         <Input
@@ -169,13 +190,50 @@ const Hero = () => {
                           </Button>
                         </InputRightElement>
                       </InputGroup>
+
+                      <FormLabel>Enter Blood Group</FormLabel>
+                      <Input
+                        placeholder='Enter Here'
+                        value={blood}
+                        onChange={(e) => { setBlood(e.target.value) }}
+                      />
+
+                      <FormLabel>Select Category</FormLabel>
+                      <Select placeholder='Select Option' size='md' mb='0.8rem'
+                        onChange={(categ) => { setCateg(categ.target.value) }}
+                        id="category" name="category" value={categ}>
+                        <option value='donor'>Donor</option>
+                        <option value='recipient'>Recipient</option>
+                      </Select>
+
+                      <FormLabel>Enter Address</FormLabel>
+                      <Input
+                        placeholder='Enter Here'
+                        value={address}
+                        onChange={(e) => { setAddress(e.target.value) }}
+                      />
+
+                      <FormLabel>Enter Age</FormLabel>
+                      <Input
+                        placeholder='Enter Here'
+                        value={age}
+                        onChange={(e) => { setAge(e.target.value) }}
+                      />
+                      <FormLabel>Enter Gender</FormLabel>
+                      <Input
+                        placeholder='Enter Here'
+                        value={gender}
+                        onChange={(e) => { setGender(e.target.value) }}
+                      />
+
+
                     </FormControl>
 
 
                   </ModalBody>
 
                   <ModalFooter>
-                    <Button colorScheme='red' mr={3} onClick={savePassword} isLoading={registerLoading} loadingText="Submitting">
+                    <Button colorScheme='red' mr={3} onClick={signupUser} isLoading={registerLoading} loadingText="Submitting">
                       Submit
                     </Button>
                     <Button onClick={onClose}>Cancel</Button>

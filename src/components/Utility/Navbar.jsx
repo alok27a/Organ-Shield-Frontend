@@ -86,7 +86,7 @@ const Navbar = () => {
   const handleClick1 = () => setShow1(!show1)
 
   const signinClicked = async () => {
-    if (password.length == 0 || token.length == 0) {
+    if (password.length == 0 || email.length==0) {
       toast({
         title: 'Error!',
         description: "No value Entered",
@@ -98,7 +98,45 @@ const Navbar = () => {
     else {
       // console.log(password)
       setLoginLoading(true)
-      // let result = API CALL
+      let result = await fetch("https://organ-shield-backend.vercel.app/user/login", {
+        method: "POST",
+        body: JSON.stringify({
+          "email": email,
+          "password": password
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json',
+          "Access-Control-Allow-Origin": "*"
+        }
+      })
+      setLoginLoading(false)
+      let test = await result.json()
+      console.log(test)
+      if (test.status) {
+        console.log("result", test)
+        sessionStorage.setItem("secretKey", test.token)
+
+        if (test.data.type == "donor")
+          navigate("/donor/dashboard")
+        else if (test.data.type == "recipient")
+          navigate("/recipient/dashboard")
+        else if (test.data.type == "hospital")
+          navigate("/hospital/dashboard")
+      }
+      else {
+        toast({
+          title: 'Error!',
+          description: "Incorrect Email or Password",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+
+
+
+
     }
 
   }
