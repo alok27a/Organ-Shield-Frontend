@@ -114,8 +114,7 @@ const Navbar = () => {
       let test = await result.json()
       console.log(test)
       if (test.status) {
-        console.log("result", test)
-        sessionStorage.setItem("secretKey", test.token)
+        sessionStorage.setItem("secretKey", test.data.token)
 
         if (test.data.type == "donor")
           navigate("/donor/dashboard")
@@ -133,10 +132,6 @@ const Navbar = () => {
           isClosable: true,
         })
       }
-
-
-
-
     }
 
   }

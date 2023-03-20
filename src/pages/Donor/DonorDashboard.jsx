@@ -46,6 +46,7 @@ const Dashboard = () => {
 
   const detailsSubmitClicked = async () => {
     let token = sessionStorage.getItem("secretKey")
+    console.log(token)
     if (token == null) {
       toast({
         title: 'Error!',
@@ -56,7 +57,42 @@ const Dashboard = () => {
       })
     }
     else {
+      let result = await fetch("https://organ-shield-backend.vercel.app/organ/add", {
+        method: "POST",
+        body: JSON.stringify({
+          "organ_type": organ,
+          "ethnic": ethnic,
+          "bmi": bmi,
+          "lod": lod
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "auth-token": token
+        }
+      })
 
+      let test = await result.json()
+      
+      console.log(test)
+      if (test.success) {
+        toast({
+          title: 'Success!',
+          description: test.message,
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      } else {
+        toast({
+          title: 'Error!',
+          description: test.message,
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+      }
     }
   }
 
@@ -119,8 +155,8 @@ const Dashboard = () => {
                 <Select placeholder='Select option' size='md' mb='0.8rem'
                   onChange={(lod) => { setLod(lod.target.value) }}
                   id="category2" name="category2" value={lod}>
-                  <option value='living'>Living</option>
-                  <option value='nonliving'>Non-Living</option>
+                  <option value='l'>Living</option>
+                  <option value='n'>Non-Living</option>
                 </Select>
 
                 <Button colorScheme="red" p={4} onClick={detailsSubmitClicked}>
