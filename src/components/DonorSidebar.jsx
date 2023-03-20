@@ -12,14 +12,12 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { FaHome, FaHistory, FaCcVisa, FaKey,FaBookReader } from "react-icons/fa";
-
-import logo from '../assets/cover.png'
+import logo from '../assets/logoOrganShield.svg'
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 
 const LinkItems = [
-  // { name: "All Items", icon: FaAngleDoubleRight, path: "/dashboard/allitem" },
   { name: "Home", icon: FaHome, path: "/donor/dashboard" },
   { name: "Counselling", icon:FaBookReader , path: "/donor/dashboard/counselling" },
   { name: "History", icon: FaHistory, path: "/donor/dashboard/history" },
@@ -30,8 +28,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
     <Box bg="red.100" w={{ base: "full", md: 60 }} pos="fixed" h="full" {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Flex alignItems="center" gap={2}>
-          <Link as={NavLink} to="/">
-            <img src={logo}  height={100} />
+          <Link as={NavLink} to="/" mb={2}>
+            <img src={logo}  width="80%"/>
           </Link>
         </Flex>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />

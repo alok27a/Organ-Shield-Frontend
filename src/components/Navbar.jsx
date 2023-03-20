@@ -28,7 +28,7 @@ import {
   ModalCloseButton,
   InputRightElement
 } from '@chakra-ui/react'
-import logo from '../assets/cover.png'
+import logo from '../assets/logoOrganShield.svg'
 
 
 
@@ -123,7 +123,7 @@ const Navbar = () => {
             mx={{ base: "auto", md: 0 }}
           >
             <HStack>
-              {/* <img src={logo} width='40%' /> */}
+              <img src={logo} width='60%' />
             </HStack>
             <HStack spacing={8} display={{ base: "none", md: "flex" }}>
               {Links.map((link, index) => (
