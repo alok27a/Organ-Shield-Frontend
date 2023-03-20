@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Stack, Wrap, Text, Heading } from "@chakra-ui/react";
 import 'react-credit-cards/es/styles-compiled.css';
-import Sidebar from "../../components/Donor/DonorSidebar";
+import Sidebar from "../../components/Recipient/RecipientSidebar";
 import Breadcrumbs from "../../components/Utility/Breadcrumbs";
 
 

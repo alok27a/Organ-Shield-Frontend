@@ -20,7 +20,7 @@ import { NavLink } from "react-router-dom";
 const LinkItems = [
   { name: "Home", icon: FaHome, path: "/recipient/dashboard" },
   { name: "Counselling", icon:FaBookReader , path: "/recipient/dashboard/counselling" },
-  { name: "Potential Donors", icon: FaSearch, path: "/recipient/dashboard/potentialdonors" },
+  { name: "Matched Donors", icon: FaSearch, path: "/recipient/dashboard/potentialdonors" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
