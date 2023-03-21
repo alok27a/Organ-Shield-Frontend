@@ -113,7 +113,7 @@ const Navbar = () => {
       setLoginLoading(false)
       let test = await result.json()
       console.log(test)
-      if (test.status) {
+      if (test.success) {
         sessionStorage.setItem("secretKey", test.data.token)
 
         if (test.data.type == "donor")

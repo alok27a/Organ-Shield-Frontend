@@ -52,7 +52,7 @@ const History = () => {
         })
         const tes = await result.json();
 
-        if (tes.status) {
+        if (tes.success) {
             setRecipients(tes.data)
             console.log(tes.data)
         }

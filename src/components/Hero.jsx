@@ -113,7 +113,7 @@ const Hero = () => {
       setRegisterLoading(false)
       let test = await result.json()
       console.log(test)
-      if (test.status) {
+      if (test.success) {
         console.log("result", test)
         toast({
           title: 'Error!',

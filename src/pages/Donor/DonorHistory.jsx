@@ -39,7 +39,7 @@ const History = () => {
     let test = await result.json()
     console.log(test)
 
-    if (test.status) {
+    if (test.success) {
       setUserHistory(test.data)
     } else {
       toast({

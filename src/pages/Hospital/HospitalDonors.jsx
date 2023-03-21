@@ -53,7 +53,7 @@ const History = () => {
         })
         const tes = await result.json();
 
-        if (tes.status) {
+        if (tes.success) {
             setDonors(tes.data)
             console.log(tes.data)
         }
