@@ -65,15 +65,12 @@ const Hero = () => {
   const [registerLoading, setRegisterLoading] = React.useState(false)
 
 
-  let navigate = useNavigate();
-
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
   const handleClick = () => setShow(!show)
-  const handleClick1 = () => setShow1(!show1)
 
   let handleInputChange = (e) => {
     let inputValue = e.target.value

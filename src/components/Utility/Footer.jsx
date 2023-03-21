@@ -7,7 +7,7 @@ const Footer = () => {
       <Text>
         Made with ❤️ by WebCrawlers |{" "}
         <Link
-          href="https://github.com/alok27a/Cognition-Frontend"
+          href="https://github.com/alok27a/Organ-Shield-Frontend"
           isExternal
           color="blue.500"
         >

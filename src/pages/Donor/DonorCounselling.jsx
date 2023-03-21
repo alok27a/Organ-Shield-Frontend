@@ -51,7 +51,7 @@ const DonorCounselling = () => {
     // if(reply.length===0){
     //   chatResponses()
     // }
-    setMessages([...messages,{ "role": "user", "content": usertext }, { "role": "assistant", "content": reply }])
+    setMessages([...messages, { "role": "user", "content": usertext }, { "role": "assistant", "content": reply }])
     console.log("End", messages)
     // tmp.push({ "role": "assistant", "content": reply })
     // setMessages(tmp)
@@ -86,17 +86,18 @@ const DonorCounselling = () => {
 
 
         </Flex>
-        <Input
-          value={usertext}
-          onChange={(e) => { setUserText(e.target.value) }}
-          pr='4.5rem'
-          mb='0.8rem'
-          placeholder='Enter Text Here'
-        />
-        <Button
-          onClick={chatResponses}
-        ></Button>
-        {/* <Bottombar /> */}
+        <InputGroup>
+          <Input
+            value={usertext}
+            onChange={(e) => { setUserText(e.target.value) }}
+            pr='4.5rem'
+            mb='0.8rem'
+            placeholder='Enter Text Here'
+
+          />
+          <InputRightElement children={<TbSend />} onClick={chatResponses} />
+
+        </InputGroup>
       </Stack>
     </Sidebar >
   );

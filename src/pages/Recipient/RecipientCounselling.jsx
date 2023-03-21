@@ -1,11 +1,9 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
-import { Stack, Wrap, Text, Heading, Input, Flex, Button, InputGroup,InputRightElement } from "@chakra-ui/react";
+import { Stack, Wrap, Text, Heading, Input, Flex, Button, InputGroup, InputRightElement } from "@chakra-ui/react";
 import Sidebar from "../../components/Recipient/RecipientSidebar";
 import Breadcrumbs from "../../components/Utility/Breadcrumbs";
-import Bottombar from "../../components/Utility/BottomSendMessage";
 import { Configuration, OpenAIApi } from "openai";
-import { monthsShort } from "moment/moment";
 import { TbSend } from "react-icons/tb";
 
 
@@ -33,6 +31,11 @@ const RecipientCounselling = () => {
   // useEffect(()=>{
   //   console.log("hell")
   // },[tmp,messages])
+
+  const setUserMessage = async () => {
+    setMessages(messages => [...messages, { "role": "user", "content": usertext }])
+  }
+
   const chatResponses = async () => {
     setUserText("")
     // console.log(messages)
@@ -40,20 +43,23 @@ const RecipientCounselling = () => {
     // setMessages([...messages, ])
     // tmp.push({ "role": "user", "content": usertext })
     console.log(usertext)
-    setMessages([...messages, { "role": "user", "content": usertext }])
+    setMessages(messages => [...messages, { "role": "user", "content": usertext }])
+    // setUserMessage()
+
     console.log("Start", messages)
-    // // console.log("Hello " ,messages)
+
     const chat = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: messages,
+      messages:  [...messages, { "role": "user", "content": usertext }],
     });
+
     const reply = chat.data.choices[0].message.content;
     // // messages.push({ "role": "assistant", "content": reply });
     // setMessages([...messages, ])
     // if(reply.length===0){
     //   chatResponses()
     // }
-    setMessages([...messages, { "role": "user", "content": usertext }, { "role": "assistant", "content": reply }])
+    setMessages(messages => [...messages, { "role": "assistant", "content": reply }])
     console.log("End", messages)
     // tmp.push({ "role": "assistant", "content": reply })
     // setMessages(tmp)
@@ -92,10 +98,10 @@ const RecipientCounselling = () => {
             pr='4.5rem'
             mb='0.8rem'
             placeholder='Enter Text Here'
-            
+
           />
 
-          <InputRightElement children={<TbSend/>} onClick={chatResponses} />
+          <InputRightElement children={<TbSend />} onClick={chatResponses} />
 
         </InputGroup>
         {/* <Button

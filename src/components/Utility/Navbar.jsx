@@ -37,8 +37,8 @@ const LinkURLS = ["/", "/about", "/contact"];
 
 const ExternalLinks = ["About", "Github"];
 const ExternalLinkUrls = [
-  "https://devpost.com/software/safe-chain",//Devpost Link
-  "https://github.com/alok27a/Cognition-Frontend",// Github link 
+  "",//Devpost Link
+  "",// Github link 
 ];
 
 const externalLink = ({ link, index }) => {
