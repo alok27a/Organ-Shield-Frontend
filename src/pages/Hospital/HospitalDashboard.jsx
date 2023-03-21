@@ -90,7 +90,7 @@ const Dashboard = () => {
             setDonors(test.data.donors)
             setRecipients(test.data.recipients)
             setOrgansToDonate(test.data.organsToDonate)
-            setOrgansToRecieve(test.data.organsToRecieve)
+            setOrgansToRecieve(test.data.organsToReceive)
             setTransplants(test.data.transplants)
         }
         else {
@@ -145,12 +145,12 @@ const Dashboard = () => {
                                 />
                                 <StatsCard
                                     title={'Organs to Donate'}
-                                    stat={transplants}
+                                    stat={organstodonate}
                                     icon={<FaChartArea size={'3em'} />}
                                 />
                                 <StatsCard
-                                    title={'Organ to Recieve'}
-                                    stat={transplants}
+                                    title={'Organ to Receive'}
+                                    stat={organstorecieve}
                                     icon={<FaChartArea size={'3em'} />}
                                 />
                             </SimpleGrid>
