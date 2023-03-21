@@ -28,8 +28,11 @@ import {
     StatNumber,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { BsPerson,BsBookmarkCheck } from 'react-icons/bs';
+import { BsPerson, BsBookmarkCheck } from 'react-icons/bs';
 import { BiDonateHeart } from 'react-icons/bi';
+import { FaChartArea, FaLocationArrow } from 'react-icons/fa'
+import {MdLocationOn} from "react-icons/md"
+
 
 function StatsCard(props) {
     const { title, stat, icon } = props;
@@ -65,36 +68,46 @@ function StatsCard(props) {
 const Dashboard = () => {
 
     const toast = useToast();
+    const [donors, setDonors] = useState("")
+    const [recipients, setRecipients] = useState("")
+    const [organstodonate, setOrgansToDonate] = useState("")
+    const [organstorecieve, setOrgansToRecieve] = useState("")
+    const [transplants, setTransplants] = useState("")
 
-
-
-
-
-    const navigate = useNavigate()
-
-    const handleClick1 = () => setShow1(!show1)
-
-    // useEffect(() => {
-    //   if (!sessionStorage.getItem('secretKey')) {
-    //     navigate('/')
-    //   }
-    // }, [])
-
-    const detailsSubmitClicked = async () => {
-        let token = sessionStorage.getItem("secretKey")
-        if (token == null) {
+    const getAllStats = async () => {
+        let result = await fetch("https://organ-shield-backend.vercel.app/hospital/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json',
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+        console.log("hello")
+        let test = await result.json()
+        console.log(test)
+        if (test.success) {
+            setDonors(test.data.donors)
+            setRecipients(test.data.recipients)
+            setOrgansToDonate(test.data.organsToDonate)
+            setOrgansToRecieve(test.data.organsToRecieve)
+            setTransplants(test.data.transplants)
+        }
+        else {
             toast({
                 title: 'Error!',
-                description: "Try To Login Again",
+                description: "Error Fetching Donor Details",
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
             })
         }
-        else {
-
-        }
     }
+
+
+    useEffect(() => {
+        getAllStats();
+    }, [])
 
 
     return (
@@ -111,19 +124,34 @@ const Dashboard = () => {
                         <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
                             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
                                 <StatsCard
+                                    title={'Max Hospital Pvt Ltd'}
+                                    stat="Mumbai"
+                                    icon={<MdLocationOn size={'3em'} />}
+                                />
+                                <StatsCard
                                     title={'Donors'}
-                                    stat={'5,000'}
+                                    stat={donors}
                                     icon={<BiDonateHeart size={'3em'} />}
                                 />
                                 <StatsCard
                                     title={'Recipients'}
-                                    stat={'1,000'}
+                                    stat={recipients}
                                     icon={<BsPerson size={'3em'} />}
                                 />
                                 <StatsCard
                                     title={'Successful Transplants'}
-                                    stat={'7'}
+                                    stat={transplants}
                                     icon={<BsBookmarkCheck size={'3em'} />}
+                                />
+                                <StatsCard
+                                    title={'Organs to Donate'}
+                                    stat={transplants}
+                                    icon={<FaChartArea size={'3em'} />}
+                                />
+                                <StatsCard
+                                    title={'Organ to Recieve'}
+                                    stat={transplants}
+                                    icon={<FaChartArea size={'3em'} />}
                                 />
                             </SimpleGrid>
                         </Box>
