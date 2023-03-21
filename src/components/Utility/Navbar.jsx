@@ -86,7 +86,7 @@ const Navbar = () => {
   const handleClick1 = () => setShow1(!show1)
 
   const signinClicked = async () => {
-    if (password.length == 0 || email.length==0) {
+    if (password.length == 0 || email.length == 0) {
       toast({
         title: 'Error!',
         description: "No value Entered",
@@ -182,6 +182,7 @@ const Navbar = () => {
                     <FormControl mb={5}>
                       <FormLabel>Enter E-Mail ID</FormLabel>
                       <Input
+                        ref={initialRef}
                         placeholder='Enter Here'
                         value={email}
                         onChange={(e) => { setEmail(e.target.value) }}
@@ -191,7 +192,6 @@ const Navbar = () => {
                       <FormLabel>Password</FormLabel>
                       <InputGroup size='md'>
                         <Input
-                          ref={initialRef}
                           placeholder='Enter Password Here'
                           type={show ? 'text' : 'password'}
                           value={password}
