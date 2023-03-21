@@ -149,7 +149,7 @@ const Dashboard = () => {
                                     icon={<FaChartArea size={'3em'} />}
                                 />
                                 <StatsCard
-                                    title={'Organ to Receive'}
+                                    title={'Number of Organs Needed'}
                                     stat={organstorecieve}
                                     icon={<FaChartArea size={'3em'} />}
                                 />
