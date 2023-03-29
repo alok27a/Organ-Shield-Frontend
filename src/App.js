@@ -33,7 +33,7 @@ const App = () => {
             <Route path="counselling" element={<DonorCounselling />} />
             <Route path="history" element={<History />} />
           </Route>
-          
+
           {/* RECIPIENT ROUTES */}
           <Route exact path="/recipient/dashboard">
             <Route index element={<RecipientDashboard />} />
@@ -41,9 +41,9 @@ const App = () => {
             <Route path="potentialdonors" element={<PotentialDonors />} />
           </Route>
 
-        {/* HOSPITAL ROUTES */}
+          {/* HOSPITAL ROUTES */}
           <Route exact path="/hospital/dashboard">
-            <Route index element={<HospitalDashboard/>}/>
+            <Route index element={<HospitalDashboard />} />
             <Route path="donors" element={<HospitalDonors />} />
             <Route path="recipients" element={<HospitalRecipients />} />
             <Route path="matching" element={<HospitalMatching />} />
