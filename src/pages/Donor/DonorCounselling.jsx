@@ -1,11 +1,10 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
-import { Stack, Wrap, Text, Heading, Input, Flex, Button,InputGroup } from "@chakra-ui/react";
+import { Stack, Wrap, Text, Heading, Input, Flex, Button, InputGroup, InputRightElement } from "@chakra-ui/react";
 import Sidebar from "../../components/Recipient/RecipientSidebar";
 import Breadcrumbs from "../../components/Utility/Breadcrumbs";
-import Bottombar from "../../components/Utility/BottomSendMessage";
 import { Configuration, OpenAIApi } from "openai";
-import { monthsShort } from "moment/moment";
+import { TbSend } from "react-icons/tb";
 
 
 const configuration = new Configuration({
