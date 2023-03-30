@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect } from "react";
-import { Stack, Wrap, Text, Heading } from "@chakra-ui/react";
+import { Stack, Wrap, Text, Heading, Skeleton } from "@chakra-ui/react";
 import 'react-credit-cards/es/styles-compiled.css';
 import Sidebar from "../../components/Hospital/HospitalSidebar";
 import Breadcrumbs from "../../components/Utility/Breadcrumbs";
@@ -24,8 +24,9 @@ import { MdCancel } from "react-icons/md"
 const History = () => {
     const toast = useToast()
     const [result, setResult] = useState([])
-
+    const [dataLoading, setDataLoading] = useState(false)
     const getMatchedResult = async () => {
+        setDataLoading(true)
         const result = await fetch("http://localhost:5000/hospital/match", {
             method: "GET",
             headers: {
@@ -49,6 +50,7 @@ const History = () => {
                 isClosable: true,
             })
         }
+        setDataLoading(false)
     }
 
     const approvedClick = async (did, rid, mp, o) => {
@@ -84,6 +86,7 @@ const History = () => {
                 isClosable: true,
             })
         }
+        getMatchedResult()
     }
 
     useEffect(() => {
@@ -99,7 +102,10 @@ const History = () => {
             <Stack p={4} gap={3}>
                 <Card>
                     <TableContainer>
-                        <Table variant='simple'>
+                        <Table variant="simple">
+                            {result.length === 0 && !dataLoading && (
+                                <TableCaption>No Data Available</TableCaption>
+                            )}
                             <Thead>
                                 <Tr>
                                     <Th>Donor ID</Th>
@@ -110,22 +116,58 @@ const History = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {result && result.map((item) => {
-                                    return (
-
-                                        <Tr>
-                                            <Td>{item.donor_id}</Td>
-                                            <Td>{item.recipient_id}</Td>
-                                            <Td>{item.donor_organ_type}</Td>
-                                            <Td>{item.match_percentage}</Td>
-                                            <Td>
-                                                <Button margin={2} onClick={e => approvedClick(item.donor_id, item.recipient_id, item.match_percentage, item.donor_organ_type)}><BsFillCheckCircleFill /></Button>
-                                                <Button margin={2}><MdCancel /></Button>
-                                            </Td>
-                                        </Tr>
-
-                                    )
-                                })}
+                                {dataLoading && (
+                                    <Tr>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                    </Tr>
+                                )}
+                                {result &&
+                                    result.map((item) => {
+                                        return (
+                                            <Tr>
+                                                <Td>{item.donor_id}</Td>
+                                                <Td>{item.recipient_id}</Td>
+                                                <Td>{item.donor_organ_type}</Td>
+                                                <Td>{item.match_percentage}</Td>
+                                                <Td>
+                                                    <Button
+                                                        colorScheme="whatsapp"
+                                                        margin={2}
+                                                        onClick={(e) =>
+                                                            approvedClick(
+                                                                item.donor_id,
+                                                                item.recipient_id,
+                                                                item.match_percentage,
+                                                                item.donor_organ_type
+                                                            )
+                                                        }
+                                                    >
+                                                        <BsFillCheckCircleFill />
+                                                    </Button>
+                                                    <Button
+                                                        colorScheme="red"
+                                                        margin={2}
+                                                    >
+                                                        <MdCancel />
+                                                    </Button>
+                                                </Td>
+                                            </Tr>
+                                        );
+                                    })}
                             </Tbody>
                         </Table>
                     </TableContainer>

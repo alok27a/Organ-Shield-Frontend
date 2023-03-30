@@ -1,10 +1,10 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect } from "react";
-import { Stack, Wrap, Text, Heading } from "@chakra-ui/react";
-import 'react-credit-cards/es/styles-compiled.css';
+import { Stack, Wrap, Text, Heading, Skeleton } from "@chakra-ui/react";
+import "react-credit-cards/es/styles-compiled.css";
 import Sidebar from "../../components/Hospital/HospitalSidebar";
 import Breadcrumbs from "../../components/Utility/Breadcrumbs";
-import Card from "../../components/Utility/Card"
+import Card from "../../components/Utility/Card";
 import {
     Table,
     Thead,
@@ -16,43 +16,48 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    useToast
-} from '@chakra-ui/react'
+    useToast,
+} from "@chakra-ui/react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { MdCancel } from "react-icons/md"
+import { MdCancel } from "react-icons/md";
 
 const History = () => {
-    const toast = useToast()
-    const [result, setResult] = useState([])
-
+    const toast = useToast();
+    const [result, setResult] = useState([]);
+    const [dataLoading, setDataLoading] = useState(false);
     const getMatchedResult = async () => {
-        const result = await fetch("https://organ-shield-backend.vercel.app/hospital/transplants", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                'Accept': 'application/json',
-                "Access-Control-Allow-Origin": "*"
+        setDataLoading(true);
+        const result = await fetch(
+            "https://organ-shield-backend.vercel.app/hospital/transplants",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
             }
-        })
+        );
 
-        const tes = await result.json()
-        
+        const tes = await result.json();
+
         if (tes.success) {
-            setResult(tes.data)
+            setResult(tes.data);
         } else {
             toast({
-                title: 'Error!',
+                title: "Error!",
                 description: tes.message,
-                status: 'error',
+                status: "error",
                 duration: 9000,
                 isClosable: true,
-            })
+            });
         }
-    }
+        setDataLoading(false);
+    };
 
     useEffect(() => {
-        getMatchedResult()
-    }, [])
+        getMatchedResult();
+    }, []);
 
     return (
         <Sidebar>
@@ -63,7 +68,10 @@ const History = () => {
             <Stack p={4} gap={3}>
                 <Card>
                     <TableContainer>
-                        <Table variant='simple'>
+                        <Table variant="simple">
+                            {result.length === 0 && !dataLoading && (
+                                <TableCaption>No Data Available</TableCaption>
+                            )}
                             <Thead>
                                 <Tr>
                                     <Th>Donor ID</Th>
@@ -73,18 +81,33 @@ const History = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {result && result.map((item) => {
-                                    return (
-
-                                        <Tr>
-                                            <Td>{item.donor_id}</Td>
-                                            <Td>{item.recipient_id}</Td>
-                                            <Td>{item.organ}</Td>
-                                            <Td>{item.match_percentage}</Td>
-                                        </Tr>
-
-                                    )
-                                })}
+                                {dataLoading && (
+                                    <Tr>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                        <Td>
+                                            <Skeleton h="20px" />
+                                        </Td>
+                                    </Tr>
+                                )}
+                                {result &&
+                                    result.map((item) => {
+                                        return (
+                                            <Tr>
+                                                <Td>{item.donor_id}</Td>
+                                                <Td>{item.recipient_id}</Td>
+                                                <Td>{item.organ}</Td>
+                                                <Td>{item.match_percentage}</Td>
+                                            </Tr>
+                                        );
+                                    })}
                             </Tbody>
                         </Table>
                     </TableContainer>
@@ -94,4 +117,4 @@ const History = () => {
     );
 };
 
-export default History; 
+export default History;
