@@ -19,6 +19,7 @@ import HospitalDashboard from "./pages/Hospital/HospitalDashboard";
 import HospitalDonors from "./pages/Hospital/HospitalDonors"
 import HospitalRecipients from "./pages/Hospital/HospitalRecipients";
 import HospitalMatching from "./pages/Hospital/HospitalMatching";
+import HospitalTransplants from "./pages/Hospital/HospitalTransplants";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="donors" element={<HospitalDonors />} />
             <Route path="recipients" element={<HospitalRecipients />} />
             <Route path="matching" element={<HospitalMatching />} />
+            <Route path="transplants" element={<HospitalTransplants/>} />
           </Route>
 
         </Routes>

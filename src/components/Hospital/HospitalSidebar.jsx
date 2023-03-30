@@ -11,16 +11,18 @@ import {
   useDisclosure,
   Heading,
 } from "@chakra-ui/react";
-import { FaHome, FaReceipt,FaHandHoldingMedical,FaBriefcaseMedical } from "react-icons/fa";
+import { FaHome, FaReceipt, FaHandHoldingMedical, FaBriefcaseMedical } from "react-icons/fa";
 import logo from '../../assets/logoOrganShield.svg'
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
+import { GiShakingHands } from "react-icons/gi";
 
 const LinkItems = [
   { name: "Home", icon: FaHome, path: "/hospital/dashboard" },
-  { name: "Donors", icon:FaHandHoldingMedical , path: "/hospital/dashboard/donors" },
+  { name: "Donors", icon: FaHandHoldingMedical, path: "/hospital/dashboard/donors" },
   { name: "Recipients", icon: FaReceipt, path: "/hospital/dashboard/recipients" },
   { name: "Matching", icon: FaBriefcaseMedical, path: "/hospital/dashboard/matching" },
+  { name: "Transplants", icon: GiShakingHands, path: "/hospital/dashboard/transplants" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -29,7 +31,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Flex alignItems="center" gap={2}>
           <Link as={NavLink} to="/" mb={2}>
-            <img src={logo}  width="80%"/>
+            <img src={logo} width="80%" />
           </Link>
         </Flex>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />

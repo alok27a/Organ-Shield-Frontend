@@ -26,7 +26,7 @@ const History = () => {
     const [result, setResult] = useState([])
 
     const getMatchedResult = async () => {
-        const result = await fetch("http://localhost:5000/hospital/match", {
+        const result = await fetch("http://localhost:5000/hospital/transplants", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -39,46 +39,10 @@ const History = () => {
         
         if (tes.success) {
             setResult(tes.data)
-            console.log(tes.data)
         } else {
             toast({
                 title: 'Error!',
                 description: tes.message,
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-            })
-        }
-    }
-
-    const approvedClick = async (did, rid, mp, o) => {
-        const result = await fetch("https://organ-shield-backend.vercel.app/hospital/match/approve", {
-            method: "POST",
-            body: JSON.stringify({
-                "donor_id": did,
-                "recipient_id": rid,
-                "match_percentage": mp,
-                "organ": o
-            }),
-            headers: {
-                "Content-Type": "application/json",
-                'Accept': 'application/json',
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        const tes = await result.json()
-        if (tes.success) {
-            toast({
-                title: 'Success!',
-                description: tes.message,
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-            })
-        } else {
-            toast({
-                title: 'Error!',
-                description: "Error Fetching Donor Details",
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
@@ -92,9 +56,9 @@ const History = () => {
 
     return (
         <Sidebar>
-            <Breadcrumbs links={["Home", "Dashboard", "Matching"]} />
+            <Breadcrumbs links={["Home", "Dashboard", "Transplants"]} />
             <Heading mt={8} ml={4}>
-                Matching Donors & Recipients
+                Successful Transplants
             </Heading>
             <Stack p={4} gap={3}>
                 <Card>
@@ -106,7 +70,6 @@ const History = () => {
                                     <Th>Recipient ID</Th>
                                     <Th>Organ Type</Th>
                                     <Th>Matching Percentage</Th>
-                                    <Th>Approval</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
@@ -116,12 +79,8 @@ const History = () => {
                                         <Tr>
                                             <Td>{item.donor_id}</Td>
                                             <Td>{item.recipient_id}</Td>
-                                            <Td>{item.donor_organ_type}</Td>
+                                            <Td>{item.organ}</Td>
                                             <Td>{item.match_percentage}</Td>
-                                            <Td>
-                                                <Button margin={2} onClick={e => approvedClick(item.donor_id, item.recipient_id, item.match_percentage, item.donor_organ_type)}><BsFillCheckCircleFill /></Button>
-                                                <Button margin={2}><MdCancel /></Button>
-                                            </Td>
                                         </Tr>
 
                                     )
