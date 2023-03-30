@@ -197,6 +197,7 @@ const History = () => {
                                                 <Td>
                                                     {!item.recipient_accept ? (
                                                         <Button
+                                                        colorScheme="whatsapp"
                                                           loadingText="Accepting..."
                                                           isLoading={loading}
                                                             leftIcon={
