@@ -26,7 +26,7 @@ const History = () => {
     const [result, setResult] = useState([])
 
     const getMatchedResult = async () => {
-        const result = await fetch("http://localhost:5000/hospital/transplants", {
+        const result = await fetch("https://organ-shield-backend.vercel.app/hospital/transplants", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
