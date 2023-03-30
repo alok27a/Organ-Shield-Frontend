@@ -113,7 +113,7 @@ const Hero = () => {
       if (test.success) {
         console.log("result", test)
         toast({
-          title: 'Error!',
+          title: 'Success!',
           description: test.message,
           status: 'success',
           duration: 9000,
