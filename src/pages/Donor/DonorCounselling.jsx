@@ -1,4 +1,5 @@
 /* eslint-disable array-callback-return */
+
 import React, { useEffect, useState } from "react";
 import {
     Stack,
@@ -18,7 +19,7 @@ import { Configuration, OpenAIApi } from "openai";
 import { TbSend } from "react-icons/tb";
 
 const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.REACT_APP_API_KEY
 });
 const openai = new OpenAIApi(configuration);
 
